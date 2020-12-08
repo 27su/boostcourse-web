@@ -47,7 +47,7 @@ public class TodayServlet extends HttpServlet {
 		String time = sdf.format(d);
 		
 		
-		out.println("현재시간 : " + time + "<br>");
+		out.println("<h1>현재시간 : " + time + "<br></h1>");
 		out.println("</body>");
 		out.println("</html>");
 	}
