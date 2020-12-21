@@ -21,7 +21,7 @@ public class GuestbookDao {
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			String sql = "select * from guestbook";
+			String sql = "select * from guestbook order by id desc";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
