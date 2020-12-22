@@ -33,5 +33,15 @@ public class RoleDao {
 	public List<Role> selectAll(){
 		return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
 	}
+	
+	public int insert(Role role) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(role);
+		return insertAction.execute(params);
+	}
+
+	public int update(Role role) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(role);
+		return jdbc.update(UPDATE, params);
+	}
 
 }
