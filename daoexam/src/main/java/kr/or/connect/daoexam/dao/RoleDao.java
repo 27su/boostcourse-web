@@ -43,5 +43,19 @@ public class RoleDao {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(role);
 		return jdbc.update(UPDATE, params);
 	}
+	
+	public int deleteById(Integer id) {
+		Map<String, ?> params = Collections.singletonMap("roleId", id);
+		return jdbc.update(DELETE_BY_ROLE_ID, params);
+	}
+	
+	public Role selectById(Integer id) {
+		try {
+			Map<String, ?> params = Collections.singletonMap("roleId", id);
+			return jdbc.queryForObject(SELECT_BY_ROLE_ID, params, rowMapper);		
+		}catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

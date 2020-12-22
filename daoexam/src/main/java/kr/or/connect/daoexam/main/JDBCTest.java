@@ -23,6 +23,15 @@ public class JDBCTest {
 			
 		count = roleDao.update(role);
 		System.out.println(count +  " 건 수정하였습니다.");
+		
+		Role resultRole = roleDao.selectById(201);
+		System.out.println(resultRole);
+				
+		int deleteCount = roleDao.deleteById(500);
+		System.out.println(deleteCount + "건 삭제하였습니다.");
+			
+		Role resultRole2 = roleDao.selectById(500);
+		System.out.println(resultRole2);
 	}
 
 }
