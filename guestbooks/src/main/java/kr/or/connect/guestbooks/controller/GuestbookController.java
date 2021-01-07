@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.or.connect.guestbooks.argumentresolver.HeaderInfo;
 import kr.or.connect.guestbooks.dto.Guestbook;
 import kr.or.connect.guestbooks.service.GuestbookService;
 
@@ -26,10 +27,14 @@ public class GuestbookController {
 	@Autowired
 	GuestbookService guestbookService;
 
-	@GetMapping(path = "/list")
-	public String list(@RequestParam(name = "start", required = false, defaultValue = "0") int start, ModelMap model,
-			@CookieValue(value = "count", defaultValue = "0", required = true) String value,
-			HttpServletResponse response) {
+	@GetMapping(path="/list")
+	public String list(@RequestParam(name="start", required=false, defaultValue="0") int start,
+					   ModelMap model, @CookieValue(value="count", defaultValue="1", required=true) String value,
+					   HttpServletResponse response,
+					   HeaderInfo headerInfo) {
+		System.out.println("-----------------------------------------------------");
+		System.out.println(headerInfo.get("user-agent"));
+		System.out.println("-----------------------------------------------------");
 
 		// 쿠키 값을 1증가 시킨다.
 		try {
